@@ -14,10 +14,4 @@ export const ORMConfig = async (configService: ConfigService): Promise<Connectio
   database: configService.get('DATABASE_NAME'),
   entities: ['dist/**/*.entity.ts'],
   synchronize: true, // only in the development
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnathorized: false,
-    },
-  },
 })

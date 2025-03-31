@@ -16,7 +16,7 @@ export abstract class AbstractService {
     }
   }
 
-  async findBy(condition, relations = []): Promise<any[]> {
+  async findBy(condition, relations = []): Promise<any> {
     try {
       return this.repository.findOne({ where: condition, relations })
     } catch (error) {

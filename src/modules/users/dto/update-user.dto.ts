@@ -13,7 +13,7 @@ export class UpdateUserDto {
   email?: string
 
   @IsOptional()
-  roleId?: string
+  role_id?: string
 
   @IsOptional()
   avatar?: string

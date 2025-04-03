@@ -11,7 +11,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsEmail()
   email: string
-  // roleId: string
+
+  @IsNotEmpty()
+  role_id: string
+
   @IsNotEmpty()
   @Matches(/^(?=.*\d)[A-Za-z.\s_-]+[\w~@#$%^&*+=`|{}:;!.?"()[\]-]{6,}/, {
     message:

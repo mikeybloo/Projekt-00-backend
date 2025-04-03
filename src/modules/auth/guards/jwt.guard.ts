@@ -17,8 +17,8 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     if (isPublic) return true
 
     try {
-      const accessToken = request.cookies['access_token']
-      return !!this.jwtService.verify(accessToken)
+      const access_token = request.cookies['access_token']
+      return !!this.jwtService.verify(access_token)
     } catch (error) {
       return false
     }

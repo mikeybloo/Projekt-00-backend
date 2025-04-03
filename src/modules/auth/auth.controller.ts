@@ -15,7 +15,7 @@ import { AuthService } from './auth.service'
 import { RegisterUserDTO } from './dto/register-user.dto'
 import { User } from 'entities/user.entity'
 import { Public } from 'decorators/public.decorator'
-import { LocalAuthGuard } from 'modules/guards/local-auth.guard'
+import { LocalAuthGuard } from 'modules/auth/guards/local-auth.guard'
 import { Request, Response } from 'express'
 import { RequestWithUser } from 'interfaces/auth.interface'
 

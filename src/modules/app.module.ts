@@ -5,6 +5,10 @@ import { DatabaseModule } from './database/database.module'
 import { LoggerMiddleware } from 'middleware/logger.middleware'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
+import { APP_GUARD } from '@nestjs/core'
+import { JwtAuthGuard } from './auth/guards/jwt.guard'
+import { RolesModule } from './roles/roles.module'
+import { PermissionsModule } from './permissions/permissions.module'
 
 @Module({
   imports: [
@@ -16,9 +20,16 @@ import { AuthModule } from './auth/auth.module'
     DatabaseModule,
     UsersModule,
     AuthModule,
+    RolesModule,
+    PermissionsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

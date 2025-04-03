@@ -23,7 +23,7 @@ export class UsersService extends AbstractService {
     }
 
     try {
-      const newUser = this.usersRepository.create({ ...createUserDto })
+      const newUser = this.usersRepository.create({ ...createUserDto, role: { id: createUserDto.role_id } })
       return this.usersRepository.save(newUser)
     } catch (error) {
       Logging.error(error)
@@ -33,9 +33,11 @@ export class UsersService extends AbstractService {
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = (await this.findById(id)) as User
-    const { email, password, confirmPassword, roleId, ...data } = updateUserDto
+    const { email, password, confirmPassword, role_id, ...data } = updateUserDto
     if (user.email !== email && email) {
       user.email = email
+    } else if (email && user.email === email) {
+      throw new BadRequestException('User with that email already exists.')
     }
     if (password && confirmPassword) {
       if (password !== confirmPassword) {
@@ -49,8 +51,8 @@ export class UsersService extends AbstractService {
       user.password = await hash(password)
     }
 
-    if (roleId) {
-      // user.role = { ...user.role, id: roleId }
+    if (role_id) {
+      user.role = { ...user.role, id: role_id }
     }
 
     try {

@@ -10,6 +10,7 @@ import { JwtAuthGuard } from './auth/guards/jwt.guard'
 import { RolesModule } from './roles/roles.module'
 import { PermissionsModule } from './permissions/permissions.module'
 import { PermissionsGuard } from './permissions/guards/permissions.guard'
+import { ProductsModule } from './products/products.module'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PermissionsGuard } from './permissions/guards/permissions.guard'
     AuthModule,
     RolesModule,
     PermissionsModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [

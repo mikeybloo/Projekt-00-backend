@@ -10,9 +10,9 @@ export class Base {
 
   @CreateDateColumn()
   @Expose()
-  createdAt: Date
+  created_at: Date
 
   @UpdateDateColumn()
   @Expose()
-  updatedAt: Date
+  updated_at: Date
 }

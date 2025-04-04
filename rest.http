@@ -61,11 +61,13 @@ Content-Type: application/json
 	"permissions": []
 }
 
+### DELETE /roles/:id
+DELETE  http://localhost:8080/roles/ec9d1d72-338d-4760-a36c-694d7166555c HTTP/1.1
+
 ### PATCH /users/:id
 PATCH http://localhost:8080/users/737cd16e-352f-4fec-9f47-daf74857e003 HTTP/1.1
 Content-Type: application/json
 
 {
-	"first_name": "John",
-	"last_name": "Donovan"
+	"role_id": "51149c12-be54-4fe2-9b3e-df84b640d76b"
 }

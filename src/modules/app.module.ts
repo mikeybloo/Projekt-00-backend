@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core'
 import { JwtAuthGuard } from './auth/guards/jwt.guard'
 import { RolesModule } from './roles/roles.module'
 import { PermissionsModule } from './permissions/permissions.module'
+import { PermissionsGuard } from './permissions/guards/permissions.guard'
 
 @Module({
   imports: [
@@ -28,6 +29,10 @@ import { PermissionsModule } from './permissions/permissions.module'
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionsGuard,
     },
   ],
 })

@@ -5,6 +5,7 @@ import { UsersService } from 'modules/users/users.service'
 import { RolesService } from 'modules/roles/roles.service'
 import { User } from 'entities/user.entity'
 import { Role } from 'entities/role.entity'
+import { Request } from 'express'
 
 @Injectable()
 export class PermissionsGuard implements CanActivate {
@@ -21,10 +22,14 @@ export class PermissionsGuard implements CanActivate {
       return true
     }
 
-    const request = context.switchToHttp().getRequest()
-    const userId = await this.authService.getUserId(request)
-    const user: User = await this.usersService.findById(userId, ['role'])
-    const role: Role = await this.rolesService.findById(user.role.id, ['role'])
+    const request: Request = context.switchToHttp().getRequest()
+    const user = await this.authService.user(request.cookies['access_token'] || '')
+    if (!user.role) {
+      return false
+    }
+
+    const role: Role = await this.rolesService.findById(user.role.id, ['permissions'])
+
     if (request.method === 'GET') {
       return role.permissions.some((p) => p.name === `view_${access}` || p.name === `edit_${access}`)
     }

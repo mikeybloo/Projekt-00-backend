@@ -21,5 +21,5 @@ export class RegisterUserDTO {
 
   @IsNotEmpty()
   @Match(RegisterUserDTO, (field) => field.password, { message: 'Passwords do not match.' })
-  confirmPassword: string
+  confirm_password: string
 }

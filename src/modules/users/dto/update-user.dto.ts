@@ -26,8 +26,8 @@ export class UpdateUserDto {
   })
   password?: string
 
-  @ValidateIf((o) => typeof o.confirmPassword === 'string' && o.confirmPassword.length > 0)
+  @ValidateIf((o) => typeof o.confirm_password === 'string' && o.confirm_password.length > 0)
   @IsOptional()
   @Match(UpdateUserDto, (field) => field.password, { message: 'Passwords do not match.' })
-  confirmPassword?: string
+  confirm_password?: string
 }

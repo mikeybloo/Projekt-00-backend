@@ -33,14 +33,14 @@ export class UsersService extends AbstractService {
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const user = (await this.findById(id)) as User
-    const { email, password, confirmPassword, role_id, ...data } = updateUserDto
+    const { email, password, confirm_password, role_id, ...data } = updateUserDto
     if (user.email !== email && email) {
       user.email = email
     } else if (email && user.email === email) {
       throw new BadRequestException('User with that email already exists.')
     }
-    if (password && confirmPassword) {
-      if (password !== confirmPassword) {
+    if (password && confirm_password) {
+      if (password !== confirm_password) {
         throw new BadRequestException('Passwords do not match.')
       }
 

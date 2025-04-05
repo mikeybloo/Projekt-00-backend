@@ -6,10 +6,15 @@ import { UsersService } from 'modules/users/users.service'
 import { compareHash, hash } from 'utils/bcrypt'
 import { RegisterUserDTO } from './dto/register-user.dto'
 import { Request } from 'express'
+import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService, private jwtService: JwtService) {}
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+    private configService: ConfigService,
+  ) {}
 
   async validateUser(email: string, password: string): Promise<User> {
     Logging.info('Validating user...')
@@ -36,12 +41,12 @@ export class AuthService {
   }
 
   async generateJwt(user: User): Promise<string> {
-    return this.jwtService.signAsync({ sub: user.id, name: user.email })
+    return this.jwtService.signAsync({ sub: user.id, username: user.email })
   }
 
   async user(cookie: string): Promise<User> {
-    const data = await this.jwtService.verifyAsync(cookie)
-    return this.usersService.findById(data['id'], ['role'])
+    const data = await this.jwtService.verifyAsync(cookie, { secret: this.configService.get('JWT_SECRET') })
+    return this.usersService.findById(data['sub'], ['role'])
   }
 
   async getUserId(request: Request): Promise<string> {

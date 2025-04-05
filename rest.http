@@ -15,9 +15,18 @@ POST http://localhost:8080/auth/register HTTP/1.1
 Content-Type: application/json
 
 {
+  	"email": "mikey@gmail.com",
+  	"password": "Mikey1234",
+  	"confirmPassword": "Mikey1234"
+}
+
+### POST /auth/login
+POST http://localhost:8080/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
   	"email": "john@gmail.com",
-  	"password": "John123!",
-  	"confirmPassword": "John123!"
+  	"password": "John123!"
 }
 
 ### POST /auth/login

@@ -50,7 +50,7 @@ export class AuthController {
 
   @Post('signout')
   @HttpCode(HttpStatus.OK)
-  async signout(@Res({ passthrough: true }) res: Response): Promise<{ msg: string }> {
+  async signout(@Res({ passthrough: true }) res: Response, @Req() req: Request): Promise<{ msg: string }> {
     res.clearCookie('access_token')
     return { msg: 'ok' }
   }

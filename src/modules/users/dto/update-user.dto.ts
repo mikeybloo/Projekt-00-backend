@@ -3,10 +3,10 @@ import { Match } from 'decorators/match.decorator'
 
 export class UpdateUserDto {
   @IsOptional()
-  firstName?: string
+  first_name?: string
 
   @IsOptional()
-  lastName?: string
+  last_name?: string
 
   @IsOptional()
   @IsEmail()

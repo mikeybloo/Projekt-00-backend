@@ -3,6 +3,6 @@ export interface PaginatedResult {
   meta: {
     total: number
     page: number
-    lastPage: number
+    last_page: number
   }
 }

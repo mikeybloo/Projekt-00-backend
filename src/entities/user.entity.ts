@@ -9,10 +9,10 @@ export class User extends Base {
   email: string
 
   @Column({ nullable: true })
-  firstName: string
+  first_name: string
 
   @Column({ nullable: true })
-  lastName: string
+  last_name: string
 
   @Column({ nullable: true })
   avatar: string

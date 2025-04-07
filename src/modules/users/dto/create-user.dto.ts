@@ -3,10 +3,10 @@ import { Match } from 'decorators/match.decorator'
 
 export class CreateUserDto {
   @IsOptional()
-  firstName?: string
+  first_name?: string
 
   @IsOptional()
-  lastName?: string
+  last_name?: string
 
   @IsNotEmpty()
   @IsEmail()
